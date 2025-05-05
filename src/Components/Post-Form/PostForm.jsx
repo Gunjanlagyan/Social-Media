@@ -30,13 +30,10 @@ const PostForm = ({ post }) => {
       status: post?.status || "active",
     },
   });
- 
-  
-  // DATA SUBMIT FUNCTION
+
   const submit = async (data) => {
-  
     setLoading(true);
-    // update function
+
     if (post) {
       const file = data.image[0]
         ? await service.uploadFile(data.image[0])
@@ -51,9 +48,7 @@ const PostForm = ({ post }) => {
       if (dbpost) {
         navigate("/all-post");
       }
-    }
-    // create post
-    else {
+    } else {
       const file = data.image[0]
         ? await service.uploadFile(data.image[0])
         : null;
@@ -74,18 +69,16 @@ const PostForm = ({ post }) => {
   const slugTransform = (value) => {
     if (value && typeof value === "string") {
       return value
-        .trim() // Remove extra spaces from the start and end
-        .toLowerCase() // Convert to lowercase
-        .replace(/[^a-z0-9\s]/g, " ") // Replace special characters with spaces
-        .replace(/\s+/g, "-"); // Replace all spaces with hyphens
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, " ")
+        .replace(/\s+/g, "-");
     } else {
       return "";
     }
   };
 
   useEffect(() => {
-    
-    
     const { unsubscribe } = watch((value, { name }) => {
       if (name === "title") {
         setValue("slug", slugTransform(value.title), { shouldValidate: true });
@@ -108,7 +101,6 @@ const PostForm = ({ post }) => {
         onSubmit={handleSubmit(submit)}
       >
         <div className="w-2/3 px-6">
-        
           <Input
             label="Title :"
             placeholder="Title"
@@ -138,7 +130,7 @@ const PostForm = ({ post }) => {
             }}
           />
           <p className="text-red-600 text-center">{errors.slug?.message}</p>
-          
+
           <Rte
             {...register("content")}
             label="Content :"

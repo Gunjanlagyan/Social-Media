@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import service from "../Appwrite/Config";
-import Button from "./Button";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import parse from "html-react-parser";
 import { MdModeEditOutline } from "react-icons/md";
@@ -19,6 +18,7 @@ const Post = () => {
       service.getPost(id).then((post) => {
         if (post) {
           setPost(post);
+
           if (post && userData) {
             if (post.userId === userData.$id) {
               setAuthor(true);
@@ -45,17 +45,14 @@ const Post = () => {
   return post ? (
     <div className="flex justify-center py-10 px-4 bg-gray-50">
       <div className="max-w-4xl w-full h-full bg-white rounded-lg shadow-lg flex lg:flex-row flex-col">
-        {/* Left Content Section (Post) */}
         <div className="lg:w-full relative">
           <img
-            src={service.getFilePreview(post.featuredImage)}
+            src={service.getFileView(post.featuredImage)}
             alt={post.title}
             className="w-full h-full object-cover rounded-lg"
           />{" "}
-          {/* Edit and Delete buttons in top-right corner */}
         </div>
 
-        {/* Right Image Section */}
         <div className="lg:w-2/3 p-6">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             {post.title}
@@ -90,40 +87,3 @@ const Post = () => {
 };
 
 export default Post;
-
-{
-  /* <div className="w-full max-w-7xl mx-auto px-10">
-      <div className="py-2">
-        <div className="w-full  flex flex-col  justify-center mb-4 relative  rounded-xl p-2">
-          <h1 className="text-lg font-semibold text-center mb-2">
-            {post.userName}
-          </h1>
-          <img
-            width={800}
-            src={service.getFilePreview(post.featuredImage)}
-            alt={post.title}
-            className="rounded-xl mx-auto"
-          />
-          {isAuthor && (
-            <div className="absolute right-6 top-6">
-              <Link to={`/edit-post/${post.$id}`}>
-              
-                <Button bgColour="bg-green-500"> Edit</Button>
-              </Link>
-             
-              <Button bgColour="bg-red-500" onClick={deletePost}>
-                Delete
-              </Button>
-            </div>
-          )}
-          <div className="w-full   mb-6">
-            <h1 className="text-2xl  text-center font-bold ">{post.title}</h1>
-          </div>
-          <div className="browser-css text-center">
-           
-            { parse(post.content)}</div>
-        </div>
-        
-      </div>
-    </div> */
-}

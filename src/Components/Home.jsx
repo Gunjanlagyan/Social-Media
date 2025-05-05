@@ -5,11 +5,10 @@ import authService from "../Appwrite/Auth";
 import { login, logout } from "../Store/AuthSlice";
 import Loader from "./Loader";
 
-
 export const Home = () => {
   const [loading, setLoading] = useState(true);
   const authStatus = useSelector((state) => state.auth.status);
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     authService
@@ -31,7 +30,6 @@ export const Home = () => {
 
   return loading ? (
     <Loader />
-   
   ) : (
     <div>
       {authStatus ? (

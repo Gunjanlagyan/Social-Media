@@ -14,15 +14,23 @@ export class Service {
         this.storage = new Storage(this.client);
     }
 
-    //  databases methods
 
-    async createPost({ title, slug, content, featuredImage, status, userId, userName }) {
+
+    async createPost({
+        title,
+        slug,
+        content,
+        featuredImage,
+        status,
+        userId,
+        userName,
+    }) {
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug,
-                { title, content, featuredImage, status, userId, userName, }
+                { title, content, featuredImage, status, userId, userName }
             );
         } catch (error) {
             console.log(error);
@@ -73,19 +81,13 @@ export class Service {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                [Query.equal("status", "active"),
-                Query.orderDesc("$createdAt")
-                ]
-
-
+                [Query.equal("status", "active"), Query.orderDesc("$createdAt")]
             );
         } catch (error) {
             console.log(error);
             return false;
         }
     }
-
-
 
     async uploadFile(file) {
         try {
@@ -100,8 +102,6 @@ export class Service {
         }
     }
 
-
-
     async deleteFile(fileId) {
         try {
             await this.storage.deleteFile(conf.appwriteBucketId, fileId);
@@ -111,11 +111,17 @@ export class Service {
             return false;
         }
     }
+    getFileView(fileId) {
+        try {
+            const imgUrl = this.storage.getFileView(conf.appwriteBucketId, fileId);
+            console.log(imgUrl);
 
-    getFilePreview(fileId) {
-        return this.storage.getFilePreview(conf.appwriteBucketId, fileId);
+            return imgUrl
+        } catch (error) {
+            console.log("Error fetching file view:", error);
+            return "https://via.placeholder.com/150";
+        }
     }
-
 
 
 }

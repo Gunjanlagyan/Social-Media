@@ -9,7 +9,7 @@ const PostCard = ({ post }) => {
         <div className="w-full max-w-md bg-white rounded-2xl shadow-lg overflow-hidden">
           <div className="relative">
             <img
-              src={service.getFilePreview(post.featuredImage)}
+              src={service.getFileView(post.featuredImage)}
               alt={post.title}
               className="w-full h-60 object-cover rounded-xl"
             />
@@ -29,14 +29,3 @@ const PostCard = ({ post }) => {
 };
 
 export default PostCard;
-
-{
-  /* <div className=' w-full bg-gray-100 rounded-xl px-4 py-2'>
-      <div className='w-full justify-center mb-2'>
-        <h1 className='text-lg font-semibold text-center text-gray-900 mb-2'> {post.userName}</h1>
-      <img  src={service.getFilePreview(post.featuredImage)} alt={post.title}  className='rounded-xl'/>
-     
-       <h2 className='text-xl font-bold text-center mt-2 text-gray-900'>{post.title} </h2>
-      </div>
-    </div> */
-}

@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Logo";
 import LogoutBtn from "./LogoutBtn";
 
-
 const Header = () => {
   const authStatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
