@@ -43,9 +43,9 @@ const Post = () => {
     }
   };
   return post ? (
-    <div className="flex justify-center py-10 px-4 bg-gray-50">
-      <div className="max-w-4xl w-full h-full bg-white rounded-lg shadow-lg flex lg:flex-row flex-col">
-        <div className="lg:w-full relative">
+    <div className="  flex justify-center py-10 px-4 bg-gray-50">
+      <div className="max-w-4xl  w-full h-full bg-white rounded-lg shadow-lg flex sm:flex-row flex-col">
+        <div className="sm:w-full ">
           <img
             src={service.getFileView(post.featuredImage)}
             alt={post.title}
@@ -53,7 +53,7 @@ const Post = () => {
           />{" "}
         </div>
 
-        <div className="lg:w-2/3 p-6">
+        <div className="sm:w-2/3 p-6">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             {post.title}
           </h2>
@@ -68,18 +68,22 @@ const Post = () => {
                 {post.userName}
               </span>
             </p>
-            {isAuthor && (
-              <div className="absolute right-[175px] top-[99px]">
-                <Link to={`/edit-post/${post.$id}`}>
-                  <MdModeEditOutline className="text-green-500 text-xl inline" />
-                </Link>
-                <TiDelete
-                  className="text-red-500 text-3xl inline "
-                  onClick={deletePost}
-                />
-              </div>
-            )}
           </div>
+          {isAuthor && (
+            <div className="mt-2">
+              <Link to={`/edit-post/${post.$id}`}>
+                <button className="mr-2 inline-block px-4 py-1 rounded-full bg-green-400 text-white text-sm font-semibold shadow-md hover:bg-green-500 hover:shadow-lg hover:scale-105 active:scale-100 transition-transform duration-300 ease-in-out">
+                  Edit
+                </button>
+              </Link>
+              <button
+                className="mr-2 inline-block px-4 py-1 rounded-full bg-red-400 text-white text-sm font-semibold shadow-md hover:bg-red-500 hover:shadow-lg hover:scale-105 active:scale-100 transition-transform duration-300 ease-in-out"
+                onClick={deletePost}
+              >
+                Delete
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

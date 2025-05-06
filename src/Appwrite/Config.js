@@ -114,7 +114,7 @@ export class Service {
     getFileView(fileId) {
         try {
             const imgUrl = this.storage.getFileView(conf.appwriteBucketId, fileId);
-            console.log(imgUrl);
+
 
             return imgUrl
         } catch (error) {

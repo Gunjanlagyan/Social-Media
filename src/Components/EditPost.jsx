@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PostForm from "./Post-Form/PostForm";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import service from "../Appwrite/Config";
 
 const EditPost = () => {
@@ -13,7 +13,6 @@ const EditPost = () => {
         if (id) {
           const onePost = await service.getPost(id);
           if (onePost) {
-           
             setPost(onePost);
           }
         }

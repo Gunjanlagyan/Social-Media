@@ -29,6 +29,7 @@ const Login = () => {
         const userData = await authService.getCurrentUser();
         if (userData) {
           dispatch(storeLogin(userData));
+          setLoading(false);
           navigate("/");
         }
       }

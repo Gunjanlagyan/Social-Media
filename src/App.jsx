@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import authService from "./Appwrite/Auth";
 import { login, logout } from "./Store/AuthSlice";
 import Header from "./Components/Header/Header";
@@ -12,6 +12,7 @@ import Loader from "./Components/Loader";
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  const authStatus = useSelector((state) => state.auth.status);
 
   useEffect(() => {
     authService
@@ -29,7 +30,7 @@ function App() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [authStatus, dispatch]);
 
   return loading ? (
     <Loader />
