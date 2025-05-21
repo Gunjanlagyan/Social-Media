@@ -15,7 +15,7 @@
     "@mui/icons-material": "^6.4.1",
     "@mui/material": "^6.4.1",
     "@reduxjs/toolkit": "^2.3.0",
-    "@tinymce/tinymce-react": "^5.1.1",
+    "@tinymce/tinymce-react": "^6.1.0",
     "appwrite": "^16.0.2",
     "dotenv": "^16.4.5",
     "html-react-parser": "^5.1.18",
