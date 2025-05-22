@@ -49,7 +49,7 @@ const Header = () => {
               <li key={item.name}>
                 {" "}
                 <button
-                  className="inline-block font-medium sm:px-6 px-2 sm:text-[16px] text-[12px] py-2 duration-200 hover:bg-blue-100 rounded-full"
+                  className="inline-block font-medium sm:px-6 px-2 sm:text-[16px] text-[15px] py-2 duration-200 hover:bg-blue-100 rounded-full"
                   onClick={() => navigate(item.path)}
                 >
                   {item.name}
